@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaur 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="dino2">
+        <section class="dinosaur">
+          <img src="./d2.png">
+          <div class="border"></div>
+          <h1>Brachiosaurus</h1>
+        </section>
+        <div class="dinosaur-info">
+          <div>
+            <p><span>Diet: </span><span>Herbivore</span></p>
+            <p><span>Height: </span><span>9-15 meters (30-50 ft)</span></p>
+            <p><span>Length: </span><span>27 meters (90 ft)</span></p>
+            <p><span>Weight: </span><span>30 tons (60,000 lbs)</span></p>
+          </div>
+          <div class="pagination">
+            <a href="./">1</a>
+            <a href="./dino2.html">2</a>
+            <a href="./dino3.html">3</a>
+          </div>
+        </div>
+      </main>
+      <script src="https://unpkg.com/@barba/core"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+      <script>
+      /*This function applies the enter animation*/
+      function enterAnimation() {
+          const tl = gsap.timeline();
+          tl.to('.dinosaur img', {
+            x: '-25%',
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power4.out'
+          });
+          tl.to('.dinosaur h1', {
+            x: 100 + window.innerWidth * 0.1,
+            opacity: 1,
+            duration: 0.5, 
+            ease: 'power4.out'
+          }, '-=0.3');
+        }
+
+        /*This function applies the leave animation*/
+        function leaveAnimation() {
+          const tl = gsap.timeline();
+          tl.to('.dinosaur img', {
+            x: '-30%',
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power4.out'
+          });
+          tl.to('.dinosaur h1', {
+            x: 200 + window.innerWidth * 0.08,
+            opacity: 0,
+            duration: 0.5, 
+            ease: 'power4.out'
+          }, '-=0.3');
+        }
+
+        /*This function changes the size of the navigation numbers*/
+        function changeNavNumber(bigNum, smallNum1, smallNum2) {
+          const navBtns = document.querySelectorAll('a');
+          gsap.set(navBtns[bigNum], {
+            color: 'black',
+            fontSize: '3rem'
+          });
+          gsap.set(navBtns[smallNum1], {
+            color: '#D9D9D9',
+            fontSize: '2rem'
+          });
+          gsap.set(navBtns[smallNum2], {
+            color: '#D9D9D9',
+            fontSize: '2rem'
+          });
+        }
+
+        /*This animation function is dedicated to smaller screens*/
+        function smallScreenAnimation() {
+          gsap.to('.dinosaur img', {
+            opacity: 1,
+            x: '-25%',
+            });
+            gsap.set('.dinosaur h1', {
+              x: 0,
+              opacity: 1
+            });
+        }
+      barba.init({
+        transitions: [{
+          /*Using once to apply the animation at the first visit*/
+          once(data) {
+            /*Checks the screen size to apply the right animation*/
+            if(window.innerWidth >= 1100)
+              enterAnimation();
+            else {
+              smallScreenAnimation();
+            }
+
+            /*Checks which page the visitor is on to highlight the right number of page*/
+            if(data.next.url.path == '/index.html' || data.next.url.path == '/')
+              changeNavNumber(0, 1, 2);
+            else if(data.next.url.path == '/dino2.html')
+              changeNavNumber(1, 0, 2);
+            else
+              changeNavNumber(2, 0, 1);
+          },
+
+          /*enter is where the entering animation gets applied*/
+          enter(data) {
+            if(window.innerWidth >= 1100)
+              enterAnimation();
+            else {
+              smallScreenAnimation();
+            }         
+            if(data.next.url.path == '/index.html' || data.next.url.path == '/')
+              changeNavNumber(3, 4, 5);
+            else if(data.next.url.path == '/dino2.html')
+              changeNavNumber(4, 3, 5);
+            else
+              changeNavNumber(5, 3, 4);
+            },
+
+          /*leave is where the leaving animation gets applied*/
+          leave() {
+            if(window.innerWidth >= 1100) {
+              const done = this.async();
+              leaveAnimation();
+
+            /*Creating a delay for the leaving animation to take place*/
+            /*before going to the next page*/
+            setTimeout(function() {
+                done();
+            }, 700);
+            }   
+          }
+        }]
+      });
+      </script>
+</body>
+</html>

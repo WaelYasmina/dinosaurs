@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Trade+Winds&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    padding: 0;
+    margin: 0
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dinosaur {
+    position: relative
+}
+
+.dinosaur .border {
+    width: calc(220px + 10vw);
+    height: calc(200px + 15vw);
+    border: solid 10px #ffea00;
+    position: relative;
+    /* transform: scaleY(0) */
+}
+
+.dinosaur img {
+    position: absolute;
+    top: -6%;
+    transform: translateX(-30%);
+    opacity: 0;
+    z-index: 1;
+    width: calc(500px + 25vw);
+}
+
+.dinosaur h1 {
+    position: absolute;
+    top: 12%;
+    /* transform: translateX(calc(100px + 10vw)); */
+    transform: translateX(calc(200px + 8vw));
+    opacity: 0;
+    font-family: 'Trade Winds';
+    font-size: calc(28px + 1vw);
+    z-index: 2;
+}
+
+.dinosaur-info {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.dinosaur-info p {
+    font-family: 'Montserrat';
+    font-size: calc(18px + 0.25vw);
+    margin: 0.4rem 0
+}
+
+.dinosaur-info p span:first-child {
+    color: #616161
+}
+
+/* .dinosaur-info .pagination {
+    margin-top: 0
+} */
+
+.dinosaur-info .pagination a {
+    text-decoration: none;
+    color: #D9D9D9;
+    font-family: 'Trade Winds';
+    font-size: 2rem
+}
+
+/* .dinosaur-info .pagination a:first-child {
+    color: black;
+    font-size: 3rem
+} */
+
+@media screen and (max-width: 1100px) {
+    .dinosaur h1 {
+        position: static;
+        transform: translateX(0);
+        text-align: center;
+        margin-top: 1.4rem;
+    }
+
+    .dinosaur-info {
+        margin-top: 0rem;
+    }
+
+    .dinosaur-info div {
+        text-align: center;
+    }
+}
