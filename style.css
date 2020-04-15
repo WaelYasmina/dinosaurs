@@ -3,7 +3,7 @@
 
 * {
     padding: 0;
-    margin: 0
+    margin: 0;
 }
 
 main {
@@ -17,7 +17,7 @@ main {
 }
 
 .dinosaur {
-    position: relative
+    position: relative;
 }
 
 .dinosaur .border {
@@ -25,27 +25,25 @@ main {
     height: calc(200px + 15vw);
     border: solid 10px #ffea00;
     position: relative;
-    /* transform: scaleY(0) */
 }
 
 .dinosaur img {
     position: absolute;
     top: -6%;
-    transform: translateX(-30%);
-    opacity: 0;
     z-index: 1;
     width: calc(500px + 25vw);
+    transform: translateX(-30%);
+    opacity: 0;
 }
 
 .dinosaur h1 {
     position: absolute;
     top: 12%;
-    /* transform: translateX(calc(100px + 10vw)); */
-    transform: translateX(calc(200px + 8vw));
-    opacity: 0;
     font-family: 'Trade Winds';
     font-size: calc(28px + 1vw);
     z-index: 2;
+    transform: translateX(calc(200px + 8vw));
+    opacity: 0;
 }
 
 .dinosaur-info {
@@ -60,26 +58,17 @@ main {
 }
 
 .dinosaur-info p span:first-child {
-    color: #616161
+    color: #616161;
 }
-
-/* .dinosaur-info .pagination {
-    margin-top: 0
-} */
 
 .dinosaur-info .pagination a {
     text-decoration: none;
     color: #D9D9D9;
     font-family: 'Trade Winds';
-    font-size: 2rem
+    font-size: 2rem;
 }
 
-/* .dinosaur-info .pagination a:first-child {
-    color: black;
-    font-size: 3rem
-} */
-
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 750px) {
     .dinosaur h1 {
         position: static;
         transform: translateX(0);
@@ -88,7 +77,7 @@ main {
     }
 
     .dinosaur-info {
-        margin-top: 0rem;
+        margin-top: 0;
     }
 
     .dinosaur-info div {
